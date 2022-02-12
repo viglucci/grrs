@@ -2,6 +2,7 @@
 
 use human_panic::setup_panic;
 use clap::Parser;
+use serde_json::json;
 
 /// Search for a pattern in a file and display the lines that contain it.
 #[derive(Parser, Debug)]
@@ -14,6 +15,9 @@ struct Args {
     /// The path to the file to read
     #[clap(parse(from_os_str))]
     path: std::path::PathBuf,
+
+    #[clap(long = "json")]
+    json: bool,
 }
 
 fn main() {
@@ -30,7 +34,7 @@ fn main() {
         }
     };
 
-    grrs::print_matches(&content, &args.pattern, &mut std::io::stdout());
+    grrs::print_matches(&content, &args.pattern, &mut std::io::stdout(), args.json);
 }
 
 
