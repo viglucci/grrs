@@ -34,7 +34,7 @@ fn main() {
         }
     };
 
-    grrs::print_matches(&content, &args.pattern, &mut std::io::stdout(), args.json);
+    grrs::print_matches(&content, &args.pattern, &mut std::io::stdout(), &args.json);
 }
 
 
